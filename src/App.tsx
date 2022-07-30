@@ -1,34 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import Job from "./components/Job";
+import Filter from "./components/Filter";
+import { JobsResult } from "./helper/JobType";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const URL =
+    "https://cors-anywhere.herokuapp.com/https://serpapi.com/search?engine=google_jobs&q=maputo&api_key=19fc4b31cd636acf6de3a8b8987c3310d5d67527ed7208c75f7aca39a81c5563";
+
+  const [jobs, setJobs] = useState<JobsResult[]>([]);
+
+  async function getJobs() {
+    const response = await fetch(URL);
+    const jobs = await response.json();
+    console.log(jobs.jobs_results);
+    setJobs(jobs.jobs_results);
+  }
+
+  useEffect(() => {
+    getJobs();
+  }, []);
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className="h-full px-24 bg-slate-100">
+      <header className="text-2xl text-slate-900">
+        <Header />
+      </header>
+      <main>
+        <div className="flex">
+          <div className="w-2/5">
+            <Filter />
+          </div>
+          <div className="w-3/5">
+            {jobs.map((job) => {
+              return (
+                <div key={job.job_id} className="mb-4">
+                  <Job
+                    company_name={job.company_name}
+                    title={job.title}
+                    thumbnail={job.thumbnail}
+                    location={job.location}
+                    isFulltime={job.extensions.length}
+                    posted_at={job.extensions[0]}
+                    description="descricao"
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </main>
+      <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
