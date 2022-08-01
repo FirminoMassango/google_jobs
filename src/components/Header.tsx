@@ -7,11 +7,10 @@ function Header() {
     <>
       <Logo />
       <div
-        className="mb-4 h-36 flex justify-center items-center bg-blue-200 rounded"
+        className="mb-4 h-36 flex justify-center items-center bg-hero-pattern rounded rounded-md"
         id="bg"
       >
-        <div className="w-2/3 flex justify-center content-center bg-green-200">
-          {/* <img src={backgroundImg} alt="background image" /> */}
+        <div className="w-2/3 flex justify-center content-center rounded">
           <div className="w-full text-sm bg-white flex justify-between rounded">
             <div className="flex ml-2">
               <span className="material-icons text-xl mr-2 py-2 text-gray-400">
