@@ -1,6 +1,6 @@
 function LeftPanel() {
   return (
-    <div className="text-indigo-900 font-medium mr-5">
+    <div className="text-indigo-900 font-medium mb-7 mr-5">
       <div className="my-7">
         <span>
           <input

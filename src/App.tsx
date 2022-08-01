@@ -23,16 +23,16 @@ function App() {
   }, []);
 
   return (
-    <div className="h-full px-24 bg-slate-100">
+    <div className="h-full px-4 md:px-24 bg-slate-100">
       <header className="text-2xl text-slate-900">
         <Header />
       </header>
       <main>
-        <div className="flex">
-          <div className="w-2/5">
+        <div className="md:flex">
+          <div className="w-full md:w-2/5">
             <Filter />
           </div>
-          <div className="w-3/5">
+          <div className="w-full md:w-3/5">
             {jobs.map((job) => {
               return (
                 <div key={job.job_id} className="mb-4">
