@@ -9,8 +9,8 @@ function Job(props: any) {
         </div>
 
         <p className="font-base text-lg py-2">{props.title}</p>
-        <div className="flex justify-between">
-          <div className="">
+        <div className="md:flex md:justify-between">
+          <div className="mb-4 md:mb-0">
             {props.isFulltime == 2 && (
               <span className="border-solid border border-indigo-900 px-1 font-bold text-sm rounded">
                 Full Time
